@@ -1,0 +1,43 @@
+STDIO Functions
+       fputc         output a character or word to a stream
+       fputs         output a line to a stream
+       fread         binary stream input/output
+       freopen       stream open functions
+       fscanf        input format conversion
+       fseek         reposition a stream
+       fsetpos       reposition a stream
+       ftell         reposition a stream
+       fwrite        binary stream input/output
+       getc          get next character or word from input stream
+       getchar       get next character or word from input stream
+       gets          get a line from a stream
+       getw          get next character or word from input stream
+       mktemp        make temporary filename (unique)
+       perror        system error messages
+       printf        formatted output conversion
+       putc          output a character or word to a stream
+       putchar       output a character or word to a stream
+       puts          output a line to a stream
+       putw          output a character or word to a stream
+       remove        remove directory entry
+       rewind        reposition a stream
+       scanf         input format conversion
+       setbuf        stream buffering operations
+       setbuffer     stream buffering operations
+       setlinebuf    stream buffering operations
+       setvbuf       stream buffering operations
+       sprintf       formatted output conversion
+       sscanf        input format conversion
+       strerror      system error messages
+       sys_errlist   system error messages
+       sys_nerr      system error messages
+       tempnam       temporary file routines
+       tmpfile       temporary file routines
+       tmpnam        temporary file routines
+       ungetc        un-get character from input stream
+       vfprintf      formatted output conversion
+       vfscanf       input format conversion
+       vprintf       formatted output conversion
+       vscanf        input format conversion
+       vsprintf      formatted output conversion
+       vsscanf       input format conversion

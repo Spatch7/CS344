@@ -1,0 +1,15 @@
+
+All diagnostic and error messages should be printed to stderr.
+You can also use fprintf with the stderr file handle, as in fprintf(stderr, char * __format,
+
+If a filename is passed as an argument, you do not need to parse the filename or validate it yourself. Let fopen do that for you; it will return an error if the file cannot be opened.
+
+Encoding is changing ASCII characters to base8
+
+
+Specs: 76 characters per line
+Overall process:
+	Read in 3 bytes (8 bits *3), split this into 4 6-bit values, index these values into the alphabet array for the 4 character output
+
+
+
