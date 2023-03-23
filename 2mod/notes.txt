@@ -1,0 +1,68 @@
+
+
+LISTING OPTIONS
+  -a    Print hidden files. By default, tree does not print hidden files beginning with a dot ('.') character.
+        The filesystem constructs `.' and `..' are never printed even with the -a option.
+  -d    Print only directories, no files.
+
+FILE OPTIONS
+  -p    Print permissions according to the mode string format specified for `ls' according to POSIX.
+  -u    Print the username, or UID # if no username is available, of the file.
+  -g    Print the group name, or GID # if no group name is available, of the file.
+  -s    Print the size of each file in bytes.
+
+SORTING OPTIONS (default: alphabetic sorting)
+  -r    Sort the output in reverse alphabetic order.
+  -t    Sort the output by last modification time instead of alphabetically.
+  -U    Do not sort. List files according to directory order.
+
+  -h    Print this message
+
+
+--COMPILING--
+Compile: gcc -std=gnu99 -o tree main.c libtree.c
+Strict compite: gcc -std=c99 -Wall -Werror -o tree  main.c libtree.c
+COMPILE WITH MAKE: CFLAGS='-std=c99' make 
+scp -r calhounn@access.engr.oregonstate.edu:/nfs/stak/users/calhounn/cs344/2mod/skeleton-code/libtree.c .  // run locally to download file on ssh'ed server
+
+
+DEBUGGING:
+    CFLAGS='-std=c99' make          // creates debug and release folders
+        debug/main debugs main,
+        gdb ./debug/main [OPTION] [DIRECTORY]
+
+COMPARE:
+
+you need a few putchar('\n') calls - if its a file, where EACCES errors may be, and then a final call if a directory makes it past the eacces error checks
+
+
+--TESTS--
+cmp <(release/main -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_02) <(tree -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_02)
+cmp <(release/main -- '') <(tree -- '') // want ERROR
+cmp <(release/main -r -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_02) <(tree -r -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_02)
+cmp <(release/main -d -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_02) <(tree -d -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_02)
+cmp <(release/main -a -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07) <(tree -a -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07)
+cmp <(release/main -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07) <(tree -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07)
+cmp <(release/main -s -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_08) <(tree -s -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_08)
+cmp <(release/main -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_03) <(tree -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_03)
+cmp <(release/main -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_04) <(tree -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_04)
+cmp <(release/main -d -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_03) <(tree -d -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_03)
+cmp <(release/main -a -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07) <(tree -a -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07)
+cmp <(release/main -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07) <(tree -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_07)
+cmp <(release/main -d -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_09) <(tree -d -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_09)
+cmp <(release/main -a -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_09) <(tree -a -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_09)
+cmp <(release/main -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_09) <(tree -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_09)
+cmp <(release/main -pugs $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -pugs $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -pugs -a $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -pugs -a $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -r $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -r $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -U $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -U $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -t $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -t $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -a -r $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -a -r $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -a -U $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -a -U $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+cmp <(release/main -a -t $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree -a -t $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+valgrind release/main -pugsa -r --
+
+for OPTS in {p,}{u,}{g,}{s,}{a,}{d,}{U,r,t,}
+do
+  cmp <(release/main "${OPTS:+"-$OPTS"}" -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_10) <(tree "${OPTS:+"-$OPTS"}" -- $BASE/class/cs344/assignments/01-tree/test-dirs/test_10)
+done

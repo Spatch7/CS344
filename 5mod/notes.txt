@@ -1,0 +1,10 @@
+
+
+example run:
+
+enc_server 57171 &
+keygen 1024 > mykey
+enc_client plaintext1 mykey 57171 > ciphertext1
+
+
+dec_client ciphertext1 mykey 57172 > plaintext1_a
